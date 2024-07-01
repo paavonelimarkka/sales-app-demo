@@ -1,8 +1,10 @@
 "use client"
 
-import { Card, CardContent, CardHeader, Grid, List, ListItem, Table, TableBody, TableCell, TableRow, Typography } from "@mui/material"
-import axios from "axios"
 import React, { useEffect, useState } from "react"
+import { Grid, List, ListItem, Typography } from "@mui/material"
+import axios from "axios"
+
+import SaleCard from "@/components/SaleCard"
 
 interface Sale {
   id: string,
@@ -47,62 +49,9 @@ const SalesList = (): React.ReactElement => {
         <Grid container spacing={1}>
           {sales.map(sale => {
             return (
-              <Grid item lg={4} md={6} sm={12}>
-                <ListItem key={sale.id}>
-                  <Card sx={{ width: 1 }}>
-                    <CardHeader title={sale.itemName} />
-                    <CardContent>
-
-                      <Grid container spacing={1}>
-
-                        <Grid item xs={6}>
-                          <Typography>
-                            Brand:
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Typography>
-                            {sale.itemProducer}
-                          </Typography>
-                        </Grid>
-
-                        <Grid item xs={6}>
-                          <Typography>
-                            Discount:
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Typography>
-                            {`-${sale.discountPercent}%`}
-                          </Typography>
-                        </Grid>
-
-                        <Grid item xs={6}>
-                          <Typography>
-                            Price:
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Typography>
-                            {sale.price}
-                          </Typography>
-                        </Grid>
-
-                        <Grid item xs={6}>
-                          <Typography>
-                            Sale overdue:
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Typography>
-                            {sale.discountOverdueDate}
-                          </Typography>
-                        </Grid>
-
-                      </Grid>
-
-                    </CardContent>
-                  </Card>
+              <Grid item lg={4} md={6} sm={12} key={sale.id}>
+                <ListItem>
+                  <SaleCard sale={sale} />
                 </ListItem>
               </Grid>
             )
