@@ -1,18 +1,18 @@
-"use client"
+'use client'
 
-import React, { useEffect, useState } from "react"
-import { Grid, List, ListItem, Typography } from "@mui/material"
-import axios from "axios"
+import React, { useEffect, useState } from 'react'
+import { Grid, List, ListItem, Typography } from '@mui/material'
+import axios from 'axios'
 
-import SaleCard from "@/components/SaleCard"
+import SaleCard from '@/components/SaleCard'
 
 interface Sale {
-  id: string,
-  itemName: string,
-  itemProducer: string,
-  price: number,
-  discountPercent: number,
-  discountOverdueDate: string,
+  id: string
+  itemName: string
+  itemProducer: string
+  price: number
+  discountPercent: number
+  discountOverdueDate: string
 }
 
 const SalesList = (): React.ReactElement => {
@@ -23,12 +23,12 @@ const SalesList = (): React.ReactElement => {
   useEffect(() => {
     const getSales = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/sales');
-        setSales(response.data);
-        setLoading(false);
+        const response = await axios.get('http://localhost:5000/sales')
+        setSales(response.data)
+        setLoading(false)
       } catch (err) {
-        setError('Failed to fetch sales');
-        setLoading(false);
+        setError('Failed to fetch sales')
+        setLoading(false)
       }
     }
     getSales()
@@ -47,7 +47,7 @@ const SalesList = (): React.ReactElement => {
 
       <List>
         <Grid container spacing={1}>
-          {sales.map(sale => {
+          {sales.map((sale) => {
             return (
               <Grid item lg={4} md={6} sm={12} key={sale.id}>
                 <ListItem>
@@ -58,7 +58,6 @@ const SalesList = (): React.ReactElement => {
           })}
         </Grid>
       </List>
-
     </Grid>
   )
 }
